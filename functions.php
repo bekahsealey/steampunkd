@@ -32,10 +32,7 @@ $custom_header_args = array(
 	'flex-width'             => false,
 	'default-text-color'     => '2e2315',
 	'header-text'            => true,
-	'uploads'                => true,
-	'wp-head-callback'       => $wphead_cb,
-	'admin-head-callback'    => $adminhead_cb,
-	'admin-preview-callback' => $adminpreview_cb,
+	'uploads'                => true
 );
 add_theme_support( 'custom-header', $custom_header_args );
 add_theme_support( 'custom-background' );
@@ -60,7 +57,7 @@ function steampunkd_scripts() {
 		wp_enqueue_style( 'steampunkd_nivoslider_css', get_stylesheet_directory_uri() . '/css/nivo/nivo-slider.css' );
 		wp_enqueue_style( 'steampunkd_nivoslider_css_theme_default', get_stylesheet_directory_uri() . '/css/nivo/default.css' );   
     } 
-	$body_class = get_body_class($class);
+	$body_class = get_body_class();
 	if ($template == 'template-full-footer-sidebar.php' || in_array( 'error404', $body_class)) { 
 		wp_enqueue_script( 'flex-widgets', get_template_directory_uri() . '/js/flex-widgets.js', '', '1.0', true );
 	}
@@ -183,11 +180,6 @@ function steampunkd_paginate() {
     echo paginate_links( $args );
 }
 
-//control tag display
-function my_tag_cloud_args($in){
-    return 'smallest=11&largest=20&number=8&orderby=name&unit=px';
-}
-add_filter( 'widget_tag_cloud_args', my_tag_cloud_args );
 
 // set length of default excerpt
 function custom_excerpt_length( $length ) {

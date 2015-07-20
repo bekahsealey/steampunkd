@@ -9,7 +9,7 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class( $class ); ?>>
+<body <?php body_class(); ?>>
 	<div id="wrapper">
 	<div id="wrapper-top"></div>
 		
