@@ -24,7 +24,7 @@ function steampunkd_filter_wp_title( $currenttitle, $sep, $seplocal ) {
 add_filter ( 'wp_title', 'steampunkd_filter_wp_title', 10, 3 );
 
 $custom_header_args = array(
-	'default-image'          => get_template_directory_uri() . '/images/header.gif',
+	'default-image'          => false,
 	'random-default'         => false,
 	'width'                  => 910,
 	'height'                 => 190,
@@ -49,11 +49,16 @@ add_image_size( 'fullwidth-featured-image', 860, 200, true );
 register_nav_menu( 'main-nav' , 'Main Nav' );
 
 function steampunkd_scripts() {
-	wp_enqueue_script( 'jquery' );
+	wp_enqueue_style( 'steampunkd_fonts', '//fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic%7cAbril+Fatface' );
+	wp_enqueue_script( 'steampunkd_modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ), '2.8.3', false );
+	wp_enqueue_script( 'steampunkd_slicknavjs', get_stylesheet_directory_uri() . '/js/jquery.slicknav.js', array( 'jquery' ), '1.0.4', false );
+	wp_enqueue_style( 'steampunkd_slicknavcss', '//cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.4/slicknav.css' );
+	wp_enqueue_script( 'steampunkd_global', get_stylesheet_directory_uri() . '/js/global.js', array( 'jquery' ), '1.0.0', false );
 	$template = basename( get_page_template() );
 	if($template == 'template-front-page.php') {
+		wp_enqueue_script( 'steampunkd_slicknav', '//cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.4/jquery.slicknav.min.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'steampunkd_nivoslider', get_stylesheet_directory_uri() . '/js/jquery.nivo.slider.js', array( 'jquery' ), '', true );
-		wp_enqueue_script( 'steampunkd_functions', get_stylesheet_directory_uri() . '/js/theme.js', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'steampunkd_functions', get_stylesheet_directory_uri() . '/js/theme.js', array( 'jquery', 'steampunkd_slicknav' ), '1.0.0', true );
 		wp_enqueue_style( 'steampunkd_nivoslider_css', get_stylesheet_directory_uri() . '/css/nivo/nivo-slider.css' );
 		wp_enqueue_style( 'steampunkd_nivoslider_css_theme_default', get_stylesheet_directory_uri() . '/css/nivo/default.css' );   
     } 
