@@ -53,7 +53,7 @@ function steampunkd_scripts() {
 	wp_enqueue_script( 'steampunkd_modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ), '2.8.3', false );
 	wp_enqueue_script( 'steampunkd_slicknavjs', get_stylesheet_directory_uri() . '/js/jquery.slicknav.js', array( 'jquery' ), '1.0.4', false );
 	wp_enqueue_style( 'steampunkd_slicknavcss', '//cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.4/slicknav.css' );
-	wp_enqueue_script( 'steampunkd_global', get_stylesheet_directory_uri() . '/js/global.js', array( 'jquery' ), '1.0.0', false );
+	wp_enqueue_script( 'steampunkd_global', get_stylesheet_directory_uri() . '/js/global.js', array( 'jquery' ), '1.0.0', true );
 	$template = basename( get_page_template() );
 	if($template == 'template-front-page.php') {
 		wp_enqueue_script( 'steampunkd_slicknav', '//cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.4/jquery.slicknav.min.js', array( 'jquery' ), '', true );
@@ -62,10 +62,6 @@ function steampunkd_scripts() {
 		wp_enqueue_style( 'steampunkd_nivoslider_css', get_stylesheet_directory_uri() . '/css/nivo/nivo-slider.css' );
 		wp_enqueue_style( 'steampunkd_nivoslider_css_theme_default', get_stylesheet_directory_uri() . '/css/nivo/default.css' );   
     } 
-	$body_class = get_body_class();
-	if ($template == 'template-full-footer-sidebar.php' || in_array( 'error404', $body_class)) { 
-		wp_enqueue_script( 'flex-widgets', get_template_directory_uri() . '/js/flex-widgets.js', '', '1.0', true );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'steampunkd_scripts' );
 
@@ -85,7 +81,7 @@ $steampunkd_rt_sidebar = array(
     'name' => 'Right',
     'id' => 'rt-sidebar',
     'description' => 'Widgets placed here will display in the main right sidebar',
-    'before_widget' => '<aside class="widget right">',
+    'before_widget' => '<aside class="frame">',
     'after_widget' => '</aside>',
     'before_title' => '<h2 class="widgettitle">',
     'after_title' => '</h2>',
@@ -96,7 +92,7 @@ $steampunkd_single_post_sidebar = array(
     'name' => 'Single',
     'id' => 'single-post',
     'description' => 'Widgets placed here will display under the post on a single post page',
-    'before_widget' => '<aside class="left">',
+    'before_widget' => '<aside class="flex">',
     'after_widget' => '</aside>',
     'before_title' => '<h5 class="widgettitle">',
     'after_title' => '</h5>',
@@ -107,7 +103,7 @@ $steampunkd_upper_footer_sidebar = array(
     'name' => 'Upper-Footer',
     'id' => 'upper-footer-sidebar',
     'description' => 'Widgets placed here will display in a full-width page footer',
-    'before_widget' => '<aside class="widget left">',
+    'before_widget' => '<aside class="frame flex">',
     'after_widget' => '</aside>',
     'before_title' => '<h2 class="widgettitle">',
     'after_title' => '</h2>',
@@ -118,7 +114,7 @@ $steampunkd_footer_sidebar = array(
     'name' => 'Footer',
     'id' => 'footer-sidebar',
     'description' => 'Widgets placed here will display in the footer area',
-    'before_widget' => '<aside class="left">',
+    'before_widget' => '<aside class="flex">',
     'after_widget' => '</aside>',
     'before_title' => '<h6 class="widgettitle">',
     'after_title' => '</h6>',
@@ -192,4 +188,62 @@ function custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
-?>
+// Start BNS Dynamic Copyright
+if ( ! function_exists( 'bns_dynamic_copyright' ) ) {
+  function bns_dynamic_copyright( $args = '' ) {
+      $initialize_values = array( 'start' => '', 'copy_years' => '', 'url' => '', 'end' => '' );
+      $args = wp_parse_args( $args, $initialize_values );
+ 
+      /* Initialize the output variable to empty */
+      $output = '';
+ 
+      /* Start common copyright notice */
+      empty( $args['start'] ) ? $output .= sprintf( __('Copyright') ) : $output .= $args['start'];
+ 
+      /* Calculate Copyright Years; and, prefix with Copyright Symbol */
+      if ( empty( $args['copy_years'] ) ) {
+        /* Get all posts */
+        $all_posts = get_posts( 'post_status=publish&order=ASC' );
+        /* Get first post */
+        $first_post = $all_posts[0];
+        /* Get date of first post */
+        $first_date = $first_post->post_date_gmt;
+ 
+        /* First post year versus current year */
+        $first_year = substr( $first_date, 0, 4 );
+        if ( $first_year == '' ) {
+          $first_year = date( 'Y' );
+        }
+ 
+      /* Add to output string */
+        if ( $first_year == date( 'Y' ) ) {
+        /* Only use current year if no posts in previous years */
+          $output .= ' &copy; ' . date( 'Y' );
+        } else {
+          $output .= ' &copy; ' . $first_year . "-" . date( 'Y' );
+        }
+      } else {
+        $output .= ' &copy; ' . $args['copy_years'];
+      }
+ 
+      /* Create URL to link back to home of website */
+      empty( $args['url'] ) ? $output .= ' <a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' . get_bloginfo( 'name', 'display' ) .'</a>  ' : $output .= ' ' . $args['url'];
+ 
+      /* End common copyright notice */
+      empty( $args['end'] ) ? $output .= ' ' . sprintf( __('All rights reserved.') ) : $output .= ' ' . $args['end'];
+ 
+      /* Construct and sprintf the copyright notice */
+      $output = sprintf( __('<small id="bns-dynamic-copyright"> %1$s </small><!-- #bns-dynamic-copyright -->'), $output );
+      $output = apply_filters( 'bns_dynamic_copyright', $output, $args );
+ 
+      echo $output;
+  }
+}
+// End BNS Dynamic Copyright
+
+function theme_credits() {
+	$date = date( 'Y' );
+	$name = get_bloginfo( 'name' );
+	$output = sprintf( __("<small>Copyright &copy; $date $name <span>&#x7c;</span> Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey <span>&#x7c;</span> Powered by <a href=\"http://wordpress.org\">Wordpress</a>.</small>"));
+	echo $output;
+	}

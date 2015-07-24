@@ -1,4 +1,4 @@
-<div class="post-widgets">
+<div class="sidebar post-widgets">
 	<hr>
 	<?php dynamic_sidebar( 'Single' ); ?>
 </div>

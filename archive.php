@@ -1,18 +1,4 @@
-<?php 
-get_header();
-?>		
-				<header class="full"> 
-					<h3>
-						<?php
-							if( is_day() ) _e( 'Daily archives for ' . get_the_date() );
-							elseif ( is_month() ) _e( 'Monthly archives for ' . get_the_date( 'F Y' ) );
-							elseif ( is_year() ) _e( 'Yearly archives for ' . get_the_date( 'Y' ) ); 
-							elseif ( is_author() ) _e( get_the_author_meta('nickname') . "'s archives" ); 
-							else _e( 'Browsing category: "'. single_cat_title( '', false ) . '"' );
-						?>
-					</h3>
-				</header>
-			<main>
+<?php get_header(); ?>		
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<section>
 					<article id="post-<?php the_ID(); ?>">
@@ -37,11 +23,4 @@ get_header();
 								</nav><!-- .pagination -->
 						<?php } ?>
 				</div>
-		</main>
-
-<?php
-get_sidebar();
-?>
-<?php
-get_footer();
-?>
+<?php get_footer(); ?>

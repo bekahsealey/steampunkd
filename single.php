@@ -1,6 +1,6 @@
 <?php get_header(); ?>		
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-			<section class="clearfix">
+			<section>
 				<article>
 					<?php the_post_thumbnail('page-featured-image'); ?>
 					<header><h1><a href="<?php the_permalink(); ?>" title="For More Info on <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1></header>

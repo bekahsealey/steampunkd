@@ -63,4 +63,17 @@
 			</div><!-- slider -->
 		</div><!-- slider-wrapper -->
 		<?php } ?>
-		<main class="grid">
+		<?php if ( is_archive() ) { ?>
+		<header> 
+			<h3>
+			<?php
+				if( is_day() ) _e( 'Daily archives for ' . get_the_date() );
+				elseif ( is_month() ) _e( 'Monthly archives for ' . get_the_date( 'F Y' ) );
+				elseif ( is_year() ) _e( 'Yearly archives for ' . get_the_date( 'Y' ) );
+				elseif ( is_author() ) _e( get_the_author_meta('nickname') . "'s archives" );
+				else _e( 'Browsing category: "'. single_cat_title( '', false ) . '"' );
+			?>
+			</h3>
+		</header>
+		<?php } ?>
+		<main <?php if ( !is_archive() && !is_page_template( 'template-full-footer-sidebar.php' ) && !is_page_template( 'template-full-no-comments.php' ) && !is_page_template( 'template-full-width.php' ) && !is_404() ) { ?>class="col-2-3"<?php } // check if page is a full width page and set class ?>>
