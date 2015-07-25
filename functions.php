@@ -42,10 +42,10 @@ add_post_type_support( 'page', 'excerpt' );
 add_post_type_support( 'post', 'excerpt' );
 add_theme_support( 'post-thumbnails' );
 add_image_size( 'slider', 910, 350, true );
-add_image_size( 'post-thumb', 598, 125, true );
+add_image_size( 'post-thumb', 555, 125, true );
 add_image_size( 'sm-post-thumb', 190, 120, true );
-add_image_size( 'page-featured-image', 598, 220, true );
-add_image_size( 'fullwidth-featured-image', 860, 200, true );
+add_image_size( 'post-featured-image', 555, 220, true );
+add_image_size( 'fullwidth-featured-image', 858, 260, true );
 register_nav_menu( 'main-nav' , 'Main Nav' );
 
 function steampunkd_scripts() {
