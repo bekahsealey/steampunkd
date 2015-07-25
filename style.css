@@ -690,9 +690,9 @@ body {
   border-image: url(images/article.gif) 78 81 84 80 fill stretch;
   position: relative; }
 
-#wrapper > header > a {
+#wrapper > a {
   display: block;
-  margin: -25px; }
+  margin: -4px auto; }
 
 #wrapper > header div {
   position: relative;
@@ -895,7 +895,7 @@ aside .widgettitle {
   .frame.col-1-4 {
     width: 23.5%; } }
 /* header widgets */
-div.header-sidebar {
+aside.header {
   width: 200px;
   float: right;
   max-height: 160px;
@@ -903,15 +903,15 @@ div.header-sidebar {
   position: absolute;
   top: 0;
   right: 0;
-  margin: -12px auto;
-  font-size: 2rem; }
+  font-size: 2rem;
+  clear: both;
+  margin: 1em 0; }
 
-div.header-sidebar .widgettitle ~ * {
+aside.header .widgettitle ~ * {
   margin: 6px 20px; }
 
-aside.header {
-  clear: both;
-  margin-bottom: 1em; }
+aside.header a {
+  color: inherit; }
 
 /* single-post footer widgets */
 div.post-widgets {

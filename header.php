@@ -12,15 +12,17 @@
 <body <?php body_class(); ?>>
 	<div id="wrapper" class="grid">
 		<div id="wrapper-top"></div>
+		<?php if (get_header_image() != '') { ?>
+		<a href="<?php bloginfo('url'); ?>">
+			<img id="custom-header" src="<?php header_image(); ?>" 
+			height="<?php echo get_custom_header()->height; ?>" 
+			width="<?php echo get_custom_header()->width; ?>" 
+			alt="<?php bloginfo('name' ); ?>">
+		</a>
+		<header class="grid" style="border: none;position: absolute;top: 130px;padding: 25px;height: 190px;overflow: hidden;">
+		<?php } else { ?>
 		<header class="grid">
-			<?php if (get_header_image() != '') { ?>
-			<a href="<?php bloginfo('url'); ?>">
-				<img id="custom-header" src="<?php header_image(); ?>" 
-				height="<?php echo get_custom_header()->height; ?>" 
-				width="<?php echo get_custom_header()->width; ?>" 
-				alt="<?php bloginfo('name' ); ?>">
-			</a>
-			<?php } ?>
+		<?php } ?>
 			<div class="col-2-3" >
 				<h1><a style="color:#<?php header_textcolor(); ?>" href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 style="color:#<?php header_textcolor(); ?>"><?php bloginfo( 'description' ); ?></h2>
