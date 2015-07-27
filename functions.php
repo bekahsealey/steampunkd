@@ -37,6 +37,7 @@ $custom_header_args = array(
 add_theme_support( 'custom-header', $custom_header_args );
 add_theme_support( 'custom-background' );
 add_theme_support( 'post-thumbnails' );
+add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form' ) );
 add_post_type_support( 'page', 'excerpt' );
 add_post_type_support( 'post', 'excerpt' );
@@ -98,17 +99,6 @@ $steampunkd_single_post_sidebar = array(
     'after_title' => '</h5>',
 );
 register_sidebar( $steampunkd_single_post_sidebar );
-
-$steampunkd_upper_footer_sidebar = array(
-    'name' => 'Upper-Footer',
-    'id' => 'upper-footer-sidebar',
-    'description' => 'Widgets placed here will display in a full-width page footer',
-    'before_widget' => '<aside class="frame flex">',
-    'after_widget' => '</aside>',
-    'before_title' => '<h2 class="widgettitle">',
-    'after_title' => '</h2>',
-);
-register_sidebar( $steampunkd_upper_footer_sidebar );
 
 $steampunkd_footer_sidebar = array(
     'name' => 'Footer',
@@ -181,6 +171,12 @@ function steampunkd_paginate() {
     echo paginate_links( $args );
 }
 
+//control tag display
+function my_tag_cloud_args($in){
+    return 'smallest=11&largest=18&number=8&orderby=name&unit=px';
+}
+add_filter( 'widget_tag_cloud_args', 'my_tag_cloud_args' );
+
 
 // set length of default excerpt
 function custom_excerpt_length( $length ) {
@@ -188,62 +184,32 @@ function custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
-// Start BNS Dynamic Copyright
-if ( ! function_exists( 'bns_dynamic_copyright' ) ) {
-  function bns_dynamic_copyright( $args = '' ) {
-      $initialize_values = array( 'start' => '', 'copy_years' => '', 'url' => '', 'end' => '' );
-      $args = wp_parse_args( $args, $initialize_values );
- 
-      /* Initialize the output variable to empty */
-      $output = '';
- 
-      /* Start common copyright notice */
-      empty( $args['start'] ) ? $output .= sprintf( __('Copyright') ) : $output .= $args['start'];
- 
-      /* Calculate Copyright Years; and, prefix with Copyright Symbol */
-      if ( empty( $args['copy_years'] ) ) {
-        /* Get all posts */
-        $all_posts = get_posts( 'post_status=publish&order=ASC' );
-        /* Get first post */
-        $first_post = $all_posts[0];
-        /* Get date of first post */
-        $first_date = $first_post->post_date_gmt;
- 
-        /* First post year versus current year */
-        $first_year = substr( $first_date, 0, 4 );
-        if ( $first_year == '' ) {
-          $first_year = date( 'Y' );
-        }
- 
-      /* Add to output string */
-        if ( $first_year == date( 'Y' ) ) {
-        /* Only use current year if no posts in previous years */
-          $output .= ' &copy; ' . date( 'Y' );
-        } else {
-          $output .= ' &copy; ' . $first_year . "-" . date( 'Y' );
-        }
-      } else {
-        $output .= ' &copy; ' . $args['copy_years'];
-      }
- 
-      /* Create URL to link back to home of website */
-      empty( $args['url'] ) ? $output .= ' <a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' . get_bloginfo( 'name', 'display' ) .'</a>  ' : $output .= ' ' . $args['url'];
- 
-      /* End common copyright notice */
-      empty( $args['end'] ) ? $output .= ' ' . sprintf( __('All rights reserved.') ) : $output .= ' ' . $args['end'];
- 
-      /* Construct and sprintf the copyright notice */
-      $output = sprintf( __('<small id="bns-dynamic-copyright"> %1$s </small><!-- #bns-dynamic-copyright -->'), $output );
-      $output = apply_filters( 'bns_dynamic_copyright', $output, $args );
- 
-      echo $output;
-  }
-}
-// End BNS Dynamic Copyright
-
 function theme_credits() {
 	$date = date( 'Y' );
 	$name = get_bloginfo( 'name' );
 	$output = sprintf( __("<small>Copyright &copy; $date $name <span>&#x7c;</span> Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey <span>&#x7c;</span> Powered by <a href=\"http://wordpress.org\">Wordpress</a>.</small>"));
 	echo $output;
-	}
+}
+	
+function steampunkd_layout() {
+	// check if page layout should be full width and set class
+	if ( is_archive() ) { return TRUE; }
+	else if ( is_page_template( 'template-full-width.php' ) ) { return TRUE; }
+	else if ( is_404() ) { return TRUE; }
+	else if ( has_post_format( 'gallery' ) ) { return TRUE; }
+	else { return FALSE; }
+}
+
+
+				
+
+
+
+
+
+
+
+
+
+
+

@@ -23,4 +23,5 @@
 								</nav><!-- .pagination -->
 						<?php } ?>
 				</div>
+<?php get_sidebar( 'upper-footer' ); ?>
 <?php get_footer(); ?>

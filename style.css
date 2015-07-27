@@ -210,27 +210,64 @@ div#respond {
 
 .vcard:after {
   content: "";
-  background: url(images/avatar.png) 0 0 no-repeat;
-  height: 17px;
-  width: 68px;
+  background: url(images/gravataricon.jpg) 0 0 no-repeat;
+  height: 72px;
+  width: 72px;
   position: absolute;
-  top: 32px;
-  right: 4px;
+  top: 0;
+  right: 2px;
   z-index: 10; }
 
 .vcard:hover:after {
   content: "";
-  background: url(images/avatar.png) 0 0 no-repeat;
-  background-position: 0 -17px; }
+  background: url(images/gravataricon.jpg) 0 0 no-repeat;
+  background-position: 0 -72px; }
 
 .vcard:active:after {
   content: "";
-  background: url(images/avatar.png) 0 0 no-repeat;
-  background-position: 0 -34px; }
+  background: url(images/gravataricon.jpg) 0 0 no-repeat;
+  background-position: 0 -144px; }
 
-.avatar.avatar-default {
-  position: relative;
-  z-index: 10; }
+.nav-previous:before,
+.nav-previous:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.nav-previous {
+  margin: 2rem 0;
+  float: left; }
+
+.nav-next {
+  margin: 2rem 0;
+  float: right; }
+
+.comments li {
+  margin-top: 1rem; }
+
+.comments li.depth-1 {
+  margin: 1rem 0.5rem; }
+
+.comments article {
+  padding: 5px; }
+
+footer.comment-meta {
+  margin: 0; }
+
+.comments .fn {
+  font-family: Baskerville,"Baskerville Old Face","Hoefler Text",Garamond,"Times New Roman",serif;
+  font-weight: bold; }
+
+.comments .children {
+  margin-left: 1rem;
+  border-left: 2px solid gray;
+  padding-left: 10px; }
+
+.comments .edit-link {
+  display: block; }
+
+.comments .bypostauthor article {
+  background: rgba(128, 128, 128, 0.2); }
 
 /*************************
 **************************
@@ -240,6 +277,9 @@ div#respond {
 html {
   font-size: 62.5%;
   font-family: "Sorts Mill Goudy", Baskerville,"Baskerville Old Face","Hoefler Text",Garamond,"Times New Roman",serif; }
+
+div {
+  font-size: 1.5rem; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Abril Fatface", Copperplate, "Copperplate Gothic Light", serif;
@@ -268,6 +308,9 @@ p, li {
 
 p {
   margin: 1rem 0; }
+
+span {
+  font-size: inherit; }
 
 dt {
   font-size: 1.8rem;
@@ -397,11 +440,11 @@ tbody tr:hover {
 **************************
 *************************/
 a {
-  color: #2e2315;
+  color: #706031;
   text-decoration: none; }
 
 a:hover, a:focus {
-  color: #706031; }
+  color: #2e2315; }
 
 a:active {
   color: #000; }
@@ -613,7 +656,7 @@ div.tagcloud a:after {
   line-height: 25px;
   width: 30px;
   padding-top: 2px;
-  font-size: 1.8em;
+  font-size: 1.8rem;
   text-align: center;
   margin-right: 0.4rem;
   -moz-box-shadow: 1px 1px 1px #888;
@@ -753,28 +796,6 @@ small.comments {
 
 section img {
   margin-bottom: 1rem; }
-
-.page-template-template-front-page-php .col-1-2,
-.archive.col-1-2:not(.reverse) {
-  width: 47%; }
-
-.page-template-template-front-page-php .col-1-2:not(.reverse),
-.archive.col-1-2:not(.reverse) {
-  clear: left; }
-
-aside.post-excerpt {
-  text-align: center;
-  margin: 2em 0; }
-
-aside.post-excerpt hr,
-div.footer hr {
-  /* Gradient transparent - color - transparent */
-  border: 0;
-  height: 1px;
-  background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent);
-  background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent);
-  background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent);
-  background-image: -o-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent); }
 
 .clearfix:after {
   content: ".";
@@ -935,6 +956,14 @@ div.post-widgets hr:after {
   padding: 0 0.25em;
   background: #FCFAF9; }
 
+.page-template-template-front-page-php .col-1-2,
+.archive.col-1-2:not(.reverse) {
+  width: 47%; }
+
+.page-template-template-front-page-php .col-1-2:not(.reverse),
+.archive.col-1-2:not(.reverse) {
+  clear: left; }
+
 /* footer widgets */
 .footer.sidebar {
   clear: both;
@@ -943,6 +972,20 @@ div.post-widgets hr:after {
 
 div.footer aside div {
   margin-left: 1em; }
+
+aside.post-excerpt {
+  text-align: center;
+  margin: 2em 0; }
+
+aside.post-excerpt hr,
+div.footer hr {
+  /* Gradient transparent - color - transparent */
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent);
+  background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent);
+  background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent);
+  background-image: -o-linear-gradient(left, transparent, rgba(0, 0, 0, 0.75), transparent); }
 
 @media (min-width: 0) and (max-width: 767px) {
   .js .menu {
@@ -1052,7 +1095,12 @@ div.footer aside div {
     min-height: 95px;
     max-height: 116px; }
 
-  footer:last-of-type {
-    max-width: 960px; } }
+  footer#credits {
+    max-width: 960px; }
+
+  main.full + .sidebar {
+    clear: both;
+    width: 100%;
+    float: none; } }
 
 /*# sourceMappingURL=style.css.map */
