@@ -19,7 +19,7 @@ function steampunkd_filter_wp_title( $currenttitle, $sep, $seplocal ) {
 	//Return the modified title
 	return $full_title;
 }
-
+if ( ! isset( $content_width ) ) { $content_width = 800; }
 //Hook into 'wp_title'
 add_filter ( 'wp_title', 'steampunkd_filter_wp_title', 10, 3 );
 
@@ -71,7 +71,7 @@ $steampunkd_header_sidebar = array(
     'name' => 'Header',
     'id' => 'header-sidebar',
     'description' => 'Widgets placed here will display in the right header area -- max size 200px by 160px',
-    'before_widget' => '<aside class="header">',
+    'before_widget' => '<aside class="header widget">',
     'after_widget' => '</aside>',
     'before_title' => '<h5 class="widgettitle">',
     'after_title' => '</h5>',
@@ -82,7 +82,7 @@ $steampunkd_rt_sidebar = array(
     'name' => 'Right',
     'id' => 'rt-sidebar',
     'description' => 'Widgets placed here will display in the main right sidebar',
-    'before_widget' => '<aside class="frame">',
+    'before_widget' => '<aside class="frame widget">',
     'after_widget' => '</aside>',
     'before_title' => '<h2 class="widgettitle">',
     'after_title' => '</h2>',
@@ -93,7 +93,7 @@ $steampunkd_single_post_sidebar = array(
     'name' => 'Single',
     'id' => 'single-post',
     'description' => 'Widgets placed here will display under the post on a single post page',
-    'before_widget' => '<aside class="flex">',
+    'before_widget' => '<aside class="flex widget">',
     'after_widget' => '</aside>',
     'before_title' => '<h5 class="widgettitle">',
     'after_title' => '</h5>',
@@ -104,24 +104,36 @@ $steampunkd_footer_sidebar = array(
     'name' => 'Footer',
     'id' => 'footer-sidebar',
     'description' => 'Widgets placed here will display in the footer area',
-    'before_widget' => '<aside class="flex">',
+    'before_widget' => '<aside class="flex widget">',
     'after_widget' => '</aside>',
     'before_title' => '<h6 class="widgettitle">',
     'after_title' => '</h6>',
 );
 register_sidebar( $steampunkd_footer_sidebar );
+
 function the_breadcrumb() {
     global $post;
+    if ( is_front_page() ) { return; } else {
     echo '<ul id="breadcrumbs">';
-    if (!is_home()) {
+    if ( !is_home() || !is_front_page() ) {
         echo '<li><a href="';
         echo get_option('home');
         echo '">';
         echo 'Home';
-        echo '</a></li><li> > </li>';
-        if (is_category() || is_single()) {
+        echo '</a></li><li> &gt; </li>';
+        if (is_category() || is_single() || ( is_home() && !is_front_page() ) ) {
             echo '<li>';
-            the_category(' </li><li> > </li><li> ');
+            if( is_category() ) {
+            	$cat = basename($_SERVER['REQUEST_URI']);
+            	$category = get_category_by_slug($cat);
+				$cat = $category->term_id;
+        		echo get_category_parents( $cat, true, '</li><li> &gt; </li><li>' );
+          	  	echo' </li>';
+        	}
+        	elseif ( ( is_home() && !is_front_page() ) ) {
+          	  echo ucwords(basename($_SERVER['REQUEST_URI']));
+          	  echo' </li>';
+            }
             if (is_single()) {
                 echo '</li><li> > </li><li>';
                 the_title();
@@ -129,7 +141,7 @@ function the_breadcrumb() {
             }
     		elseif ( !have_posts() ) { echo single_cat_title( '', false ); }
 			
-        } elseif (is_page()) {
+        } elseif ( is_page() ) {
             if($post->post_parent){
                 $ancestors = get_post_ancestors( $post->ID );
                 foreach ( array_reverse($ancestors) as $ancestor ) {
@@ -151,7 +163,9 @@ function the_breadcrumb() {
     elseif (is_search()) {echo'<li>Search Results for "' . get_search_query() . '"'; echo'</li>';}
 	echo '</ul>';
 	}
+	}
 }
+
 function steampunkd_paginate() {
     global $paged, $wp_query;
     $abignum = 999999999; //we need an unlikely integer
@@ -194,9 +208,10 @@ function theme_credits() {
 function steampunkd_layout() {
 	// check if page layout should be full width and set class
 	if ( is_archive() ) { return TRUE; }
-	else if ( is_page_template( 'template-full-width.php' ) ) { return TRUE; }
-	else if ( is_404() ) { return TRUE; }
-	else if ( has_post_format( 'gallery' ) ) { return TRUE; }
+	elseif ( is_search() ) { return TRUE; }
+	elseif ( is_page_template( 'template-full-width.php' ) ) { return TRUE; }
+	elseif ( is_404() ) { return TRUE; }
+	elseif ( has_post_format( array( 'gallery', 'image', 'video' ) ) ) { return TRUE; }
 	else { return FALSE; }
 }
 

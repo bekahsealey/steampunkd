@@ -41,13 +41,9 @@
 		);
 		?>
 		<?php wp_nav_menu( $main_nav_menu ); ?>
+		<?php the_breadcrumb(); ?>
 		
-		<?php 
-			$template = basename( get_page_template() );
-			if(!is_home() && $template != 'template-front-page.php'){the_breadcrumb();} 
-		?>
-		
-		<?php if (is_page_template( 'template-front-page.php' ) ) { ?>
+	<?php if ( is_front_page() && is_page_template( 'template-front-page.php' ) ) { ?>
 		<div class="full slider-wrapper theme-default">
 			<div id="slider" class="nivoSlider">
 				<?php $steampunkd_slider_param = array ( 'category_name' => 'featured', 'posts_per_page' => 6, );
@@ -64,8 +60,8 @@
 				<?php wp_reset_postdata(); ?>
 			</div><!-- slider -->
 		</div><!-- slider-wrapper -->
-		<?php } ?>
-		<?php if ( is_archive() ) { ?>
+	<?php } ?>
+	<?php if ( is_archive() ) { ?>
 		<header> 
 			<h3>
 			<?php
@@ -77,5 +73,5 @@
 			?>
 			</h3>
 		</header>
-		<?php } ?>
+	<?php } ?>
 		<main class="<?php echo ( steampunkd_layout() ) ? 'full' : 'col-2-3' // check if page is a full width page and set class ?>">
