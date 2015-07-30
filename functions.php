@@ -67,9 +67,10 @@ function steampunkd_scripts() {
 	if ( !is_archive() ) {
 		$template = basename( get_page_template() );
 		if( $template == 'template-front-page.php' ) {
-			wp_enqueue_script( 'steampunkd_nivoslider', get_stylesheet_directory_uri() . '/js/jquery.nivo.slider.js', array( 'jquery' ), '', true );
+			wp_enqueue_script( 'steampunkd_nivoslider', get_stylesheet_directory_uri() . '/js/jquery.nivo.slider.js', array( 'jquery' ), '', false );
 			wp_enqueue_style( 'steampunkd_nivoslider_css', get_stylesheet_directory_uri() . '/css/nivo/nivo-slider.css' );
 			wp_enqueue_style( 'steampunkd_nivoslider_css_theme_default', get_stylesheet_directory_uri() . '/css/nivo/default.css' );   
+			wp_enqueue_script( 'steampunkd_theme', get_stylesheet_directory_uri() . '/js/theme.js', array( 'jquery' ), '1.0.0', true );
     	} 
     }
 }

@@ -3,10 +3,6 @@ jQuery(document).ready(function($) { /* For more info on why this looks this way
 	/* Nivo Slider for the Homepage */
     if( $('#slider').length ) {
     
-    
-    
-    
-    
     	$('#slider').nivoSlider({
 			effect: 'sliceDownLeft',        // Specify sets like: 'fold,fade,sliceDown'
 			slices: 30,                     // For slice animations
