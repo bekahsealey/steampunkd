@@ -1168,6 +1168,10 @@ div.footer hr {
   div.footer aside {
     width: 98%;
     margin: 1rem auto; } }
+@media (min-width: 768px) and (max-width: 890px) {
+  .custom [class^="col-"] {
+    overflow: hidden;
+    max-height: 150px; } }
 @media (min-width: 768px) {
   .grid:before, .grid:after {
     content: "";
