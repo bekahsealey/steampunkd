@@ -873,7 +873,14 @@ body {
 
 #wrapper > a {
   display: block;
-  margin: -4px auto; }
+  margin: -4px auto;
+  position: relative; }
+
+#custom-header {
+  width: 910px;
+  height: 190px;
+  -webkit-clip-path: polygon(2.5% 0%, 97.5% 0%, 100% 12%, 100% 88%, 97.5% 100%, 2.5% 99%, 0% 88%, 0% 12%);
+  clip-path: polygon(2.5% 0%, 97.5% 0%, 100% 12%, 100% 88%, 97.5% 100%, 2.5% 99%, 0% 88%, 0% 12%); }
 
 #wrapper > header div {
   position: relative;
@@ -891,6 +898,44 @@ body {
   position: relative;
   text-shadow: 0 1px 1px #333;
   line-height: 1.5; }
+
+#wrapper > a:after {
+  content: "";
+  width: 910px;
+  height: 190px;
+  background: url(images/header.png) no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.no-svgcilppaths .octagon {
+  width: 968px;
+  height: 190px;
+  background: transparent;
+  position: relative;
+  margin: 0 auto; }
+
+.no-svgcilppaths .octagon:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 29px solid transparent;
+  border-left: 29px solid #D5CBBF;
+  border-right: 29px solid #E2D8CC;
+  width: 910px;
+  height: 0; }
+
+.no-svgcilppaths .octagon:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 29px solid transparent;
+  border-left: 29px solid #D8CCBE;
+  border-right: 29px solid #D6C9BB;
+  width: 910px;
+  height: 0; }
 
 .slicknav_menu {
   display: none; }

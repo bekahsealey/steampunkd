@@ -19,7 +19,7 @@
 			width="<?php echo get_custom_header()->width; ?>" 
 			alt="<?php bloginfo('name' ); ?>">
 		</a>
-		<header class="grid" style="border: none;position: absolute;top: 130px;padding: 25px;height: 190px;overflow: hidden;">
+		<header class="grid octagon" style="border: none;position: absolute;top: 147px;padding: 0 25px;height: 190px;overflow: hidden;">
 		<?php } else { ?>
 		<header class="grid">
 		<?php } ?>
