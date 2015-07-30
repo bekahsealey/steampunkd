@@ -1,15 +1,29 @@
 jQuery(document).ready(function($) { /* For more info on why this looks this way go to http://wdgwp.com/jquery_noconflict */
 	
 	/* activate slicknav */
-	$(function(){
-		$('#main').slicknav();
+	$( function() {
+		$( '#main' ).slicknav();
 	});
 	
 });
 
 addLoadEvent(function() {
+	removeTrailingSeparator( "breadcrumbs", "&nbsp;&gt;&nbsp;" );
 	resizeWidgets("sidebar", "aside");
 });
+
+function removeTrailingSeparator( elem, text ) {
+	if ( !document.getElementById || !document.getElementsByTagName) return false;
+	if ( !document.getElementById( elem ) ) return false;
+	
+	var breadcrumbs = document.getElementById( elem );
+	var items = breadcrumbs.getElementsByTagName( "li" );
+	var last = items[items.length - 1];
+	var match = items[items.length - 1].innerHTML;
+	if ( match == text) {
+		last.className = "remove";
+	}
+}
 
 function resizeWidgets(element, tag) {
 	if (!document.getElementsByClassName || !document.getElementsByTagName) return false;

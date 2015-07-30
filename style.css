@@ -7,12 +7,8 @@ Description: The Steampunk theme focuses on Steampunk and vintage imagery and ty
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: brown, tan, yellow, gold, one-column, two-columns, right-sidebar, custom-header, custom-menu, featured-images, translation-ready
+Tags: brown, tan, yellow, one-column, two-columns, right-sidebar, custom-header, custom-menu, featured-images, translation-ready
 
-*/
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
 */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -175,6 +171,99 @@ a img.aligncenter {
   position: absolute;
   top: 0;
   right: 0; }
+
+/*************************
+**************************
+***  Gallery 
+**************************
+*************************/
+.gallery {
+  margin: auto;
+  overflow: auto; }
+
+.gallery-item {
+  float: left;
+  margin-top: 10px;
+  text-align: center; }
+
+.gallery-item img {
+  border: 2px solid #cfcfcf; }
+
+.gallery-caption {
+  margin-left: 0;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.gallery-size-thumbnail .gallery-caption {
+  max-width: 260px;
+  margin: 0 auto; }
+
+/* One Column */
+.gallery-columns-1 .gallery-item {
+  width: 100%;
+  clear: both; }
+
+/* Two Column */
+.gallery-columns-2 .gallery-item {
+  width: 50%; }
+  .gallery-columns-2 .gallery-item:nth-of-type(2n+1) {
+    clear: both; }
+
+/* Three Column */
+.gallery-columns-3 .gallery-item {
+  width: 33%; }
+  .gallery-columns-3 .gallery-item:nth-of-type(3n+1) {
+    clear: both; }
+
+/* Four Column */
+.gallery-columns-4 .gallery-item {
+  width: 25%; }
+  .gallery-columns-4 .gallery-item:nth-of-type(4n+1) {
+    clear: both; }
+
+/* Five Column */
+.gallery-columns-5 .gallery-item {
+  width: 20%; }
+  .gallery-columns-5 .gallery-item:nth-of-type(5n+1) {
+    clear: both; }
+
+/* Six Column */
+.gallery-columns-6 .gallery-item {
+  width: 16%; }
+  .gallery-columns-6 .gallery-item:nth-of-type(6n+1) {
+    clear: both; }
+  .gallery-columns-6 .gallery-item img {
+    max-width: 120px;
+    height: auto; }
+
+/* Seven Column */
+.gallery-columns-7 .gallery-item {
+  width: 14%; }
+  .gallery-columns-7 .gallery-item:nth-of-type(7n+1) {
+    clear: both; }
+  .gallery-columns-7 .gallery-item img {
+    max-width: 110px;
+    height: auto; }
+
+/* Eight Column */
+.gallery-columns-8 .gallery-item {
+  width: 12.5%; }
+  .gallery-columns-8 .gallery-item:nth-of-type(8n+1) {
+    clear: both; }
+  .gallery-columns-8 .gallery-item img {
+    max-width: 100px;
+    height: auto; }
+
+/* Nine Column */
+.gallery-columns-9 .gallery-item {
+  width: 11%; }
+  .gallery-columns-9 .gallery-item:nth-of-type(9n+1) {
+    clear: both; }
+  .gallery-columns-9 .gallery-item img {
+    max-width: 90px;
+    height: auto; }
 
 /*************************
 **************************
@@ -341,6 +430,14 @@ h5 {
 h6 {
   font-size: 1.8rem; }
 
+header ~ h1,
+header ~ h2,
+header ~ h3,
+header ~ h4,
+header ~ h5,
+header ~ h6 {
+  margin: 2rem 0 1rem; }
+
 p, li {
   font-size: 1.6rem; }
 
@@ -371,19 +468,19 @@ ol, ul {
 .post ul {
   list-style-type: disc; }
 
-.post li ul {
+.post ul li ul {
   list-style-type: circle; }
 
-.post li ul ul {
+.post ul li ul ul {
   list-style-type: square; }
 
 .post ol {
   list-style-type: decimal; }
 
-.post li ol {
+.post ol li ol {
   list-style-type: lower-alpha; }
 
-.post li ol ol {
+.post ol li ol ol {
   list-style-type: lower-roman; }
 
 q {
@@ -850,6 +947,9 @@ section img {
   display: block;
   clear: both; }
 
+#breadcrumbs .remove {
+  display: none; }
+
 footer {
   clear: both;
   margin: 2rem 0 0; }
@@ -938,8 +1038,6 @@ aside .widgettitle {
 
 /* header widgets */
 aside.header {
-  width: 200px;
-  max-height: 160px;
   overflow: hidden;
   font-size: 2rem;
   clear: both;
@@ -1014,13 +1112,7 @@ div.footer hr {
     width: 32%; }
 
   .frame.col-1-4 {
-    width: 23.5%; }
-
-  aside.header {
-    float: right;
-    position: absolute;
-    top: 0;
-    right: 0; } }
+    width: 23.5%; } }
 @media (min-width: 0) and (max-width: 767px) {
   .js .menu {
     display: none; }

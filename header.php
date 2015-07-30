@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?> class="no-js">
  
 <head>
-<title><?php wp_title( '|' ); ?></title>
+<title><?php wp_title( '|', true, 'right' ); ?></title>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <link href="<?php bloginfo( 'stylesheet_url' ); ?>" rel="stylesheet" type="text/css" media="screen" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
 	<div id="wrapper" class="grid">
 		<div id="wrapper-top"></div>
 		<?php if (get_header_image() != '') { ?>
-		<a href="<?php bloginfo('url'); ?>">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<img id="custom-header" src="<?php header_image(); ?>" 
 			height="<?php echo get_custom_header()->height; ?>" 
 			width="<?php echo get_custom_header()->width; ?>" 
@@ -24,7 +24,7 @@
 		<header class="grid">
 		<?php } ?>
 			<div class="col-2-3" >
-				<h1><a style="color:#<?php header_textcolor(); ?>" href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1><a style="color:#<?php header_textcolor(); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 style="color:#<?php header_textcolor(); ?>"><?php bloginfo( 'description' ); ?></h2>
 			</div>
 			<?php get_sidebar( 'header' ); ?>
@@ -65,11 +65,11 @@
 		<header> 
 			<h3>
 			<?php
-				if( is_day() ) _e( 'Daily archives for ' . get_the_date() );
-				elseif ( is_month() ) _e( 'Monthly archives for ' . get_the_date( 'F Y' ) );
-				elseif ( is_year() ) _e( 'Yearly archives for ' . get_the_date( 'Y' ) );
-				elseif ( is_author() ) _e( get_the_author_meta('nickname') . "'s archives" );
-				else _e( 'Browsing category: "'. single_cat_title( '', false ) . '"' );
+				if( is_day() ) _e( 'Daily archives for ' . get_the_date(), 'steampunkd' );
+				elseif ( is_month() ) _e( 'Monthly archives for ' . get_the_date( 'F Y' ), 'steampunkd' );
+				elseif ( is_year() ) _e( 'Yearly archives for ' . get_the_date( 'Y' ), 'steampunkd' );
+				elseif ( is_author() ) _e( get_the_author_meta('nickname') . "'s archives", 'steampunkd' );
+				else _e( 'Browsing category: "'. single_cat_title( '', false ) . '"', 'steampunkd' );
 			?>
 			</h3>
 		</header>
