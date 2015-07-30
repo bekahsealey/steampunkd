@@ -963,7 +963,7 @@ div#wrapper:after {
   height: 5rem;
   position: absolute;
   left: 0;
-  bottom: -47px; }
+  bottom: -44px; }
 
 footer#credits {
   width: 100%;
@@ -1213,19 +1213,24 @@ div.footer hr {
 
   div#wrapper:after {
     content: " ";
-    background: url(images/wrapper-bottom.png) center bottom no-repeat;
-    background-size: contain;
+    border-style: solid;
+    border-width: 116px 0px 0px 0px;
+    -moz-border-image: url(images/wrapper-bottom.png) 116 0 0 0 repeat;
+    -webkit-border-image: url(images/wrapper-bottom.png) 116 0 0 0 repeat;
+    -o-border-image: url(images/wrapper-bottom.png) 116 0 0 0 repeat;
+    border-image: url(images/wrapper-bottom.png) 116 0 0 0 repeat;
     left: 0;
-    top: 99.7%;
+    top: 99.6%;
+    width: 101%;
     height: 100%;
     min-height: 95px;
     max-height: 116px; }
 
-  .page-template-template-front-page-php .col-1-2,
+  .page-template-template-front-page-php section.col-1-2,
   .archive.col-1-2:not(.reverse) {
     width: 47%; }
 
-  .page-template-template-front-page-php .col-1-2:not(.reverse),
+  .page-template-template-front-page-php section.col-1-2:not(.reverse),
   .archive.col-1-2:not(.reverse) {
     clear: both; }
 
