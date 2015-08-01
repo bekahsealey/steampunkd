@@ -18,10 +18,16 @@ function removeTrailingSeparator( elem, text ) {
 	
 	var breadcrumbs = document.getElementById( elem );
 	var items = breadcrumbs.getElementsByTagName( "li" );
+	for (e=0; e<items.length; e++) {
+		console.log(items[e].innerHTML);
+		if ( items[e].innerHTML == " " ) {
+			breadcrumbs.removeChild(items[e]);
+		}
+	}
 	var last = items[items.length - 1];
 	var match = items[items.length - 1].innerHTML;
 	if ( match == text) {
-		last.className = "remove";
+			breadcrumbs.removeChild(last);
 	}
 }
 
