@@ -20,7 +20,7 @@ function removeTrailingSeparator( elem, text ) {
 	var items = breadcrumbs.getElementsByTagName( "li" );
 	for (e=0; e<items.length; e++) {
 		console.log(items[e].innerHTML);
-		if ( items[e].innerHTML == " " ) {
+		if ( items[e].innerHTML == "" ) {
 			breadcrumbs.removeChild(items[e]);
 		}
 	}
