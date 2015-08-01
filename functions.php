@@ -139,11 +139,11 @@ function the_breadcrumb() {
             	if( is_category() ) {
             		$cat = get_query_var('cat');
         			echo get_category_parents( $cat, true, '</li><li>&nbsp;&gt;&nbsp;</li><li>' );
-          	  		echo' </li>';
+          	  		echo'</li>';
         		}
         		elseif ( ( is_home() && !is_front_page() ) ) {
           	  		echo ucwords(basename($_SERVER['REQUEST_URI']));
-          	  		echo' </li>';
+          	  		echo'</li>';
             	}
             	if ( is_single() ) {
                 	the_title();
