@@ -138,7 +138,8 @@ function the_breadcrumb() {
             	echo '<li>';
             	if( is_category() ) {
             		$cat = get_query_var('cat');
-        			echo get_category_parents( $cat, true, '</li><li>&nbsp;&gt;&nbsp;</li>' );
+        			echo get_category_parents( $cat, true, '</li><li>&nbsp;&gt;&nbsp;</li><li>' );
+          	  		echo' </li>';
         		}
         		elseif ( ( is_home() && !is_front_page() ) ) {
           	  		echo ucwords(basename($_SERVER['REQUEST_URI']));
