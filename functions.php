@@ -95,8 +95,8 @@ function steampunkd_widgets_init() {
 		'description' => 'Widgets placed here will display in the main right sidebar',
 		'before_widget' => '<aside class="frame widget">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h2 class="widgettitle">',
-		'after_title' => '</h2>',
+		'before_title' => '<h3 class="widgettitle">',
+		'after_title' => '</h3>',
 	);
 	register_sidebar( $steampunkd_rt_sidebar );
 
@@ -211,7 +211,7 @@ function theme_credits() {
 	$copy = _e("<small>Copyright &copy;", 'steampunkd');
 	$date = date( 'Y' );
 	$name = _e( get_bloginfo( 'name' ) );
-	$designed = _e("<span>&#x7c;</span> Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey <span>&#x7c;</span> Powered by <a href=\"http://wordpress.org\">Wordpress</a>.</small>", "steampunkd");
+	$designed = _e("<span>&#x7c;</span> Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey</a><span>&#x7c;</span> Powered by <a href=\"http://wordpress.org\">Wordpress</a>.</small>", "steampunkd");
 	$output  = $copy;
 	$output .= $date;
 	$output .= $name;
@@ -228,17 +228,3 @@ function steampunkd_layout() {
 	elseif ( has_post_format( array( 'gallery', 'image', 'video' ) ) ) { return TRUE; }
 	else { return FALSE; }
 }
-
-
-				
-
-
-
-
-
-
-
-
-
-
-

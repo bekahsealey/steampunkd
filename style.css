@@ -948,14 +948,14 @@ section {
   border-image: url(images/article.gif) 78 81 84 80 fill stretch;
   margin: 1rem auto 3rem; }
 
-section h1 {
+section h2 {
   clear: both;
   min-height: 30px;
   line-height: 30px;
   text-indent: 28px;
   background: url(images/section-h1.png) 0 top no-repeat; }
 
-section h2 {
+section h3 {
   clear: both;
   margin: 1.4rem 0; }
 

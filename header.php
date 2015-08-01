@@ -2,7 +2,6 @@
 <html <?php language_attributes(); ?> class="no-js">
  
 <head>
-<title><?php wp_title( '|', true, 'right' ); ?></title>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <link href="<?php bloginfo( 'stylesheet_url' ); ?>" rel="stylesheet" type="text/css" media="screen" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
