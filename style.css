@@ -8,6 +8,7 @@ Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: brown, tan, yellow, one-column, two-columns, right-sidebar, custom-header, custom-menu, featured-images, translation-ready
+Text Domain: steampunkd
 
 */
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -442,7 +443,7 @@ p, li {
   font-size: 1.6rem; }
 
 p {
-  margin: 1rem 0; }
+  margin: 2rem 0; }
 
 span {
   font-size: inherit; }
@@ -960,7 +961,7 @@ section h3 {
   margin: 1.4rem 0; }
 
 section p {
-  line-height: 1.6; }
+  line-height: 1.4; }
 
 ul.taxonomy li {
   display: inline-block;
