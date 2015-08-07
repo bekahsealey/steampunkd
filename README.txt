@@ -52,3 +52,21 @@ How do I use the custom Gravatar?
 6. Full Width page Featured Images are 858px wide by 260px high.
 7. Slider Images are 910px wide by 350px high.
 8. Custom Header Images are 910px wide by 190px high.
+
+= Licenses =
+
+Fonts via Google Fonts
+* AbrilFatface-Regular.ttf: Copyright (c) 2011, Copyright (c) 2011, TypeTogether (www.type-together.com), with Reserved Font Names "Abril" and "Abril Fatface"
+* SortsMillGoudy-Regular.ttf: Copyright (c) 2010, Barry Schwartz (chemoelectric@chemoelectric.org)
+
+SlickNav
+Copyright (c) 2015 Josh Cope
+License: MIT License
+
+Modernizr
+Copyright © 2009—2015
+License: MIT License
+
+Nivo Slider
+Copyright (c) 2010-2012 Dev7studios
+License: MIT License

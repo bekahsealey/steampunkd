@@ -60,9 +60,9 @@ register_nav_menu( 'main-nav' , 'Main Nav' );
 function steampunkd_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' );
 	wp_enqueue_style( 'steampunkd_fonts', '//fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic%7cAbril+Fatface' );
-	wp_enqueue_script( 'steampunkd_modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ), '2.8.3', false );
+	wp_enqueue_script( 'steampunkd_modernizr', get_stylesheet_directory_uri() . '/js/modernizr.js', array( 'jquery' ), '2.8.3', false );
 	wp_enqueue_script( 'steampunkd_slicknavjs', get_stylesheet_directory_uri() . '/js/jquery.slicknav.js', array( 'jquery' ), '1.0.4', false );
-	wp_enqueue_style( 'steampunkd_slicknavcss', '//cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.4/slicknav.css' );
+	wp_enqueue_style( 'steampunkd_slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav/slicknav.css' );
 	wp_enqueue_script( 'steampunkd_global', get_stylesheet_directory_uri() . '/js/global.js', array( 'jquery' ), '1.0.0', true );
 	if ( !is_archive() ) {
 		$template = basename( get_page_template() );
