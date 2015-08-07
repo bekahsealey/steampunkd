@@ -31,7 +31,7 @@
 		
 		<?php
 		$main_nav_menu = array(
-			'menu' => 'main-nav',
+			'theme_location' => 'main-nav',
 			'container' => 'nav',
 			'menu_id'         => 'main',
 			'container_class' => 'main-menu',
