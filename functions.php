@@ -2,60 +2,48 @@
 add_action('after_setup_theme', 'steampunkd_setup');
 function steampunkd_setup(){
     load_theme_textdomain('steampunkd', get_template_directory() . '/languages');
+    add_post_type_support( 'page', 'excerpt' );
+	add_post_type_support( 'post', 'excerpt' );
+	$custom_header_args = array(
+		'default-image'          => false,
+		'random-default'         => false,
+		'width'                  => 910,
+		'height'                 => 190,
+		'flex-height'            => false,
+		'flex-width'             => false,
+		'default-text-color'     => '2e2315',
+		'header-text'            => true,
+		'uploads'                => true
+	);
+	add_theme_support( 'custom-header', $custom_header_args );
+	add_theme_support( 'custom-background' );
+	add_theme_support(  'automatic-feed-links'  );
+	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
+	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'slider', 910, 350, true );
+	add_image_size( 'post-thumb', 555, 125, true );
+	add_image_size( 'sm-post-thumb', 190, 120, true );
+	add_image_size( 'post-featured-image', 555, 220, true );
+	add_image_size( 'fullwidth-featured-image', 858, 260, true );
+	add_theme_support( 'title-tag' );
+
+	if ( ! function_exists( '_wp_render_title_tag' ) ) {
+		function theme_slug_render_title() {
+	?>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<?php
+		}
+		add_action( 'wp_head', 'theme_slug_render_title' );
+	}
+	register_nav_menu( 'main-nav' , 'Main Nav' );
 }
 
-function steampunkd_wp_title( $title, $sep ) {
-	global $paged, $page;
-
-	if ( is_feed() )
-		return $title;
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title = "$title $sep $site_description";
-
-	// Add a page number if necessary.
-	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'steampunkd' ), max( $paged, $page ) );
-
-	return $title;
-}
-add_filter( 'wp_title', 'steampunkd_wp_title', 10, 2 );
 
 
 if ( ! isset( $content_width ) ) { $content_width = 800; }
 
-add_post_type_support( 'page', 'excerpt' );
-add_post_type_support( 'post', 'excerpt' );
-$custom_header_args = array(
-	'default-image'          => false,
-	'random-default'         => false,
-	'width'                  => 910,
-	'height'                 => 190,
-	'flex-height'            => false,
-	'flex-width'             => false,
-	'default-text-color'     => '2e2315',
-	'header-text'            => true,
-	'uploads'                => true
-);
-add_theme_support( 'custom-header', $custom_header_args );
-add_theme_support( 'title-tag' );
-add_theme_support( 'custom-background' );
-add_theme_support(  'automatic-feed-links'  );
-add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
-add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
-add_theme_support( 'post-thumbnails' );
-add_image_size( 'slider', 910, 350, true );
-add_image_size( 'post-thumb', 555, 125, true );
-add_image_size( 'sm-post-thumb', 190, 120, true );
-add_image_size( 'post-featured-image', 555, 220, true );
-add_image_size( 'fullwidth-featured-image', 858, 260, true );
 
-register_nav_menu( 'main-nav' , 'Main Nav' );
 
 function steampunkd_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' );
@@ -63,6 +51,7 @@ function steampunkd_scripts() {
 	wp_enqueue_script( 'steampunkd_modernizr', get_stylesheet_directory_uri() . '/js/modernizr.js', array( 'jquery' ), '2.8.3', false );
 	wp_enqueue_script( 'steampunkd_slicknavjs', get_stylesheet_directory_uri() . '/js/jquery.slicknav.js', array( 'jquery' ), '1.0.4', false );
 	wp_enqueue_style( 'steampunkd_slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav/slicknav.css' );
+	wp_enqueue_style( 'steampunkd-style', get_stylesheet_uri(), array(), '2015-08-07' );
 	wp_enqueue_script( 'steampunkd_global', get_stylesheet_directory_uri() . '/js/global.js', array( 'jquery' ), '1.0.0', true );
 	if ( !is_archive() ) {
 		$template = basename( get_page_template() );
@@ -156,7 +145,8 @@ function the_breadcrumb() {
                 	$ancestors = get_post_ancestors( $post->ID );
                 	foreach ( array_reverse($ancestors) as $ancestor ) {
 						$title = get_the_title();
-                    	$output .= '<li><a href="x" title="'.get_the_title($ancestor).'">'.get_the_title($ancestor).'</a></li> <li>&nbsp;&gt;&nbsp;</li>';
+						$link = get_permalink( $ancestor );
+                    	$output = '<li><a href="'.$link.'" title="'.get_the_title($ancestor).'">'.get_the_title($ancestor).'</a></li> <li>&nbsp;&gt;&nbsp;</li>';
                 	}
                 	echo $output;
                 	echo '<li>' . $title . '</li>';
