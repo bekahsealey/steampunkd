@@ -3,11 +3,11 @@
 			<section>
 			<?php
 				// Pick post template 
-				( has_post_format( array( 'gallery', 'image', 'video' ) ) ) ? get_template_part( 'content-full' ) : get_template_part( 'content' ); ?>
+				( has_post_format( array( 'gallery', 'image', 'video' ) ) ) ? get_template_part( 'content', 'full' ) : get_template_part( 'content' ); ?>
 				<nav id="pagi" class="clearfix">
 					<ul>
-						<?php previous_post_link( '<li>%link</li>', 'Previous Post' ); ?>
-						<?php next_post_link( '<li>%link</li>', 'Next Post' ); ?>
+						<?php previous_post_link( '<li>%link</li>', __( 'Previous Post', 'steampunkd') ); ?>
+						<?php next_post_link( '<li>%link</li>', __( 'Next Post', 'steampunkd') ); ?>
 					</ul>
 				</nav><!-- .pagination -->
 				<?php get_sidebar( 'post' ); ?>

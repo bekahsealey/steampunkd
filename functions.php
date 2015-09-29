@@ -1,4 +1,11 @@
 <?php
+add_action( 'admin_init', 'steampunkd_add_editor_styles' );
+function steampunkd_add_editor_styles() {
+	$font_url = str_replace( ',', '%2C', '//fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic%7cAbril+Fatface' );
+	add_editor_style( $font_url );
+	add_editor_style( 'custom-editor-style.css' );
+}
+
 add_action('after_setup_theme', 'steampunkd_setup');
 function steampunkd_setup(){
     load_theme_textdomain('steampunkd', get_template_directory() . '/languages');
@@ -112,13 +119,13 @@ function steampunkd_widgets_init() {
 	register_sidebar( $steampunkd_footer_sidebar );
 }
 
-function the_breadcrumb() {
+function steampunkd_the_breadcrumb() {
     global $post;
     if ( is_front_page() ) { return; } else {
     echo '<ul id="breadcrumbs">';
     	if ( !is_home() || !is_front_page() ) {
     		echo '<li><a href="';
-    		$url = home_url( '/' );
+    		$url = esc_url( home_url('/'));
 			echo $url;
     		echo '">';
     		echo 'Home';
@@ -154,13 +161,13 @@ function the_breadcrumb() {
                 	echo '<li>'; the_title(); echo '</li>';
             	}
 			}
-			elseif (is_tag()) {echo'<li>Search Results for "'; single_tag_title(); echo'" Tag</li>';}
-    		elseif (is_day()) {echo"<li>Archive for "; the_time('F jS, Y'); echo'</li>';}
-    		elseif (is_month()) {echo"<li>Archive for "; the_time('F, Y'); echo'</li>';}
-    		elseif (is_year()) {echo"<li>Archive for "; the_time('Y'); echo'</li>';}
-    		elseif (is_author()) {echo"<li>Author Archive"; echo'</li>';}
-    		elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "<li>Blog Archives"; echo'</li>';}
-    		elseif (is_search()) {echo'<li>Search Results for "' . get_search_query() . '"'; echo'</li>';}
+			elseif (is_tag()) { echo '<li>'; printf( __( 'Tag Archive for %s', 'steampunkd' ), single_tag_title() ); echo '</li>'; }
+    		elseif (is_day()) {echo '<li>'; printf( __( 'Daily Archive for %s', 'steampunkd' ), get_the_date() ); echo'</li>'; }
+    		elseif (is_month()) {echo '<li>'; printf( __( 'Monthly Archive for %s', 'steampunkd' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'steampunkd' ) ) ); echo'</li>'; }
+    		elseif (is_year()) {echo '<li>'; printf( __( 'Yearly Archive for %s', 'steampunkd' ), get_the_date( _x( 'Y', 'yearly archives date format', 'steampunkd' ) ) ); echo' </li>'; }
+    		elseif (is_author()) {echo '<li>'; printf( __(  '%s\'s archive', 'steampunkd' ),  get_the_author_meta('nickname') ) ; echo '</li>'; }
+    		elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { echo '<li>'; printf( __(  'Blog Archive', 'steampunkd' ) ); echo '</li>'; }
+    		elseif (is_search()) { echo '<li>'; printf( __(  'Search Results for %s', 'steampunkd' ), get_search_query() ); echo'</li>'; }
 			echo '</ul>'; return;
 		}
 	}
@@ -186,28 +193,32 @@ function steampunkd_paginate() {
 }
 
 //control tag display
-function my_tag_cloud_args($in){
+function steampunkd_my_tag_cloud_args($in){
     return 'smallest=11&largest=18&number=8&orderby=name&unit=px';
 }
-add_filter( 'widget_tag_cloud_args', 'my_tag_cloud_args' );
+add_filter( 'widget_tag_cloud_args', 'steampunkd_my_tag_cloud_args' );
 
 
 // set length of default excerpt
-function custom_excerpt_length( $length ) {
+function steampunkd_custom_excerpt_length( $length ) {
 	return 30;
 }
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'steampunkd_custom_excerpt_length', 999 );
 
-function theme_credits() {
-	$copy = _e("<small>Copyright &copy;", 'steampunkd');
-	$date = date( 'Y' );
-	$name = _e( get_bloginfo( 'name' ) );
-	$designed = _e("<span>&#x7c;</span> Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey</a><span>&#x7c;</span> Powered by <a href=\"http://wordpress.org\">Wordpress</a>.</small>", "steampunkd");
-	$output  = $copy;
-	$output .= $date;
+function steampunkd_theme_credits() {
+	
+	$copy = __( 'Copyright', 'steampunkd');
+	$date = get_option( 'date_format' );
+	$name = ' ' . get_option( 'blogname' );
+	$designed = '<span>$nbsp;&#x7c;&nbsp;</span>' . __( "Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey</a><span>$nbsp;&#x7c;&nbsp;</span> Powered by <a href=\"http://wordpress.org\">WordPress</a>.", 'steampunkd') . '</small>';
+	$output = '';
+	$output .= '<small>';
+	$output .= $copy . ' &copy; ';
+	$output .= date( 'Y' );
 	$output .= $name;
 	$output .= $designed;
-	return $output;
+	$output = wp_kses($output, array(  'a' => array( 'href' => array() ) ) );
+	echo $output;
 }
 	
 function steampunkd_layout() {

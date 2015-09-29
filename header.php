@@ -41,7 +41,7 @@
 		);
 		?>
 		<?php wp_nav_menu( $main_nav_menu ); ?>
-		<?php the_breadcrumb(); ?>
+		<?php steampunkd_the_breadcrumb(); ?>
 		
 	<?php if ( is_front_page() && is_page_template( 'template-front-page.php' ) ) { ?>
 		<div class="full slider-wrapper theme-default">
@@ -65,11 +65,15 @@
 		<header> 
 			<h3>
 			<?php
-				if( is_day() ) _e( 'Daily archives for ' . get_the_date(), 'steampunkd' );
-				elseif ( is_month() ) _e( 'Monthly archives for ' . get_the_date( 'F Y' ), 'steampunkd' );
-				elseif ( is_year() ) _e( 'Yearly archives for ' . get_the_date( 'Y' ), 'steampunkd' );
-				elseif ( is_author() ) _e( get_the_author_meta('nickname') . "'s archives", 'steampunkd' );
-				else _e( 'Browsing category: "'. single_cat_title( '', false ) . '"', 'steampunkd' );
+					if ( is_day() ) :
+						printf( __( 'Daily Archive for %s', 'steampunkd' ), get_the_date() );
+					elseif ( is_month() ) :
+						printf( __( 'Monthly Archive for %s', 'steampunkd' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'steampunkd' ) ) );
+					elseif ( is_year() ) :
+						printf( __( 'Yearly Archive for %s', 'steampunkd' ), get_the_date( _x( 'Y', 'yearly archives date format', 'steampunkd' ) ) );
+					elseif ( is_author() ) : printf( __(  '%s\'s archive', 'steampunkd' ),  get_the_author_meta('nickname') ) ;
+					else : printf( __( 'Browsing category: %s', 'steampunkd' ), single_cat_title( '', false ) );
+					endif;
 			?>
 			</h3>
 		</header>
