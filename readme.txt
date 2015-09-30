@@ -70,3 +70,11 @@ License: MIT License
 Nivo Slider
 Copyright (c) 2010-2012 Dev7studios
 License: MIT License
+
+Antique Images Courtesy of Graphics Fairy
+http://thegraphicsfairy.com/terms-copyright/
+Terms & Copyright
+The Graphics Fairy is an Angel Company. You are free to use all clip art images in any of your projects created for resale or pleasure. Please do not use more than 6 of the graphic images within any one project, or within a single page of a blog or website. My images may not be used on free graphics sites ( in other words if you own a “free graphics site”, do not post my images on your site to give away for free). You may sell my graphics, as collage sheets, or printables, if you desire, providing you follow the 6 image rule. A link to the Graphics Fairy is very much appreciated, when including the images on your blog or website. Thank you! © The Graphics Fairy 2007
+
+Mustaches via https://pixabay.com/en/photos/mustache/
+License: Creative Commons CC0

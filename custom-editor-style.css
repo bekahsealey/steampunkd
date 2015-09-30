@@ -1,0 +1,122 @@
+body#tinymce.wp-editor { 
+	font-size: 10px;
+	font-family: "Sorts Mill Goudy", Baskerville,"Baskerville Old Face","Hoefler Text",Garamond,"Times New Roman",serif;
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
+body#tinymce.wp-editor.div {
+	font-size: 1.5em;
+}
+body#tinymce.wp-editor.h1, h2, h3, h4, h5, h6 {
+	font-family: "Abril Fatface", Copperplate, "Copperplate Gothic Light", serif;
+	margin-bottom: .3em;
+}
+body#tinymce.wp-editor.h1 {
+	font-size: 30px;
+}
+body#tinymce.wp-editor.h2 {
+	font-size: 28px;
+}
+body#tinymce.wp-editor.h3 {
+	font-size: 26px;
+}
+body#tinymce.wp-editor.h4 {
+	font-size: 24px;
+}
+body#tinymce.wp-editor.h5 {
+	font-size: 20px;
+}
+body#tinymce.wp-editor.h6 {
+	font-size: 18px;
+}
+body#tinymce.wp-editor p, body#tinymce.wp-editor li {
+	font-size: 16px;
+}
+body#tinymce.wp-editor p {
+	margin: 2em 0;
+}
+body#tinymce.wp-editor span {
+	font-size: inherit;
+}
+body#tinymce.wp-editor dt {
+	font-size: 18px;
+	line-height: 1.4;
+	margin: 5px 0;
+}
+body#tinymce.wp-editor dd {
+	font-size: 15px;
+	margin-left: 1em;
+}
+body#tinymce.wp-editor small { 
+	font-size: 12px;
+	line-height: .9;
+	margin: 3px 0;
+	display: block;
+}
+body#tinymce.wp-editor ol, body#tinymce.wp-editor ul {
+	margin-left: 20px;
+}
+body#tinymce.wp-editor ul {
+	list-style-type: disc;
+}
+body#tinymce.wp-editor ul li ul {
+	list-style-type: circle;
+}
+body#tinymce.wp-editor ul li ul ul {
+	list-style-type: square;
+}
+body#tinymce.wp-editor ol {
+	list-style-type: decimal;
+}
+body#tinymce.wp-editor ol li ol {
+	list-style-type: lower-alpha;
+}
+body#tinymce.wp-editor ol li ol ol {
+	list-style-type: lower-roman;
+}
+body#tinymce.wp-editor q {
+	quotes: '"' '"' "'" "'";
+}
+body#tinymce.wp-editor q:before { content: open-quote; }
+body#tinymce.wp-editor q:after  { content: close-quote; }
+body#tinymce.wp-editor blockquote, body#tinymce.wp-editor pre {
+	margin-left: 10px;
+	border-left: 2px solid gray;
+	padding-left: 20px;
+}
+body#tinymce.wp-editor cite {
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+body#tinymce.wp-editor address {
+	font-size: 1.5em;
+}
+body#tinymce.wp-editor abbr {
+	border-bottom: 1px dotted black;
+}
+body#tinymce.wp-editor code, body#tinymce.wp-editor kbd, body#tinymce.wp-editor pre, body#tinymce.wp-editor var {
+	font-family: "Lucida Console","Lucida Sans Typewriter",monaco,"Bitstream Vera Sans Mono",monospace;
+	font-size: 1.4em;
+}
+body#tinymce.wp-editor pre {
+	background: rgba(white, 0.8);
+	overflow: scroll;
+	padding: 10px;
+}
+body#tinymce.wp-editor em {
+	font-style: italic;
+}
+body#tinymce.wp-editor strong {
+	font-weight: bold;
+	font-family: Baskerville,"Baskerville Old Face","Hoefler Text",Garamond,"Times New Roman",serif;
+}
+body#tinymce.wp-editor sub {
+	vertical-align: sub;
+}
+body#tinymce.wp-editor sup {
+	vertical-align: super;
+}
+body#tinymce.wp-editor mark {
+	background: khaki;
+	padding: 2px;
+}

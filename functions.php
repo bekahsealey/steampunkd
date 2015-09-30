@@ -210,7 +210,7 @@ function steampunkd_theme_credits() {
 	$copy = __( 'Copyright', 'steampunkd');
 	$date = get_option( 'date_format' );
 	$name = ' ' . get_option( 'blogname' );
-	$designed = '<span>$nbsp;&#x7c;&nbsp;</span>' . __( "Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey</a><span>$nbsp;&#x7c;&nbsp;</span> Powered by <a href=\"http://wordpress.org\">WordPress</a>.", 'steampunkd') . '</small>';
+	$designed = '<span>&nbsp;&#x7c;&nbsp;</span>' . __( "Steampunk'd Theme Designed by <a href=\"http://nmomedia.com\">Rebekah Sealey</a><span>&nbsp;&#x7c;&nbsp;</span> Powered by <a href=\"http://wordpress.org\">WordPress</a>.", 'steampunkd') . '</small>';
 	$output = '';
 	$output .= '<small>';
 	$output .= $copy . ' &copy; ';
