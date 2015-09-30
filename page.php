@@ -2,7 +2,7 @@
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<section>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<?php the_post_thumbnail('post-featured-image'); ?>
+				<?php the_post_thumbnail('steampunkd_post-featured-image'); ?>
 				<header><a href="<?php the_permalink(); ?>" title="For More Info on <?php the_title_attribute(); ?>"><?php the_title( '<h2>', '</h2>'); ?></a></header>
 				<small class="meta">Posted by <?php the_author() ?> on <time datetime="<?php the_time( 'Y-m-d' ); ?>" ><?php the_time( 'D, M jS, Y' ) ?></time><?php edit_post_link( 'Edit', ' | ', '' ); ?></small>
 				<small class="comments"><?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a comment', 'steampunkd' ) . '</span>', __( 'One comment so far', 'steampunkd' ), __( 'View all % comments', 'steampunkd' ) ); ?></small>
